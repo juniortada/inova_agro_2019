@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+  {% block body %}
+  <div id="app1" class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col"><h5 class="submenu"><i class="fas fa-cart-plus"></i> Novo Produtor</h5></div>
+      <div class="col"></div>   
+    </div>
+
+    <form id="form_produtor" name="form_produtor" role="form" method="post">
+      <div class="row form-group">
+        <div class="col-1"><label for="nome" class="col-form-label">Produtor:</label></div>
+        <div class="col-11">
+          <input type="text" name="nome" class="form-control" autocomplete="off">
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 botoes">
+          <button class="btn" onclick="location.href='{{ url_for('agro.produtor') }}'" type="button"><i class="fa fa-undo" aria-hidden="true"></i> Voltar</button>
+          <button class="btn btn-success" type="submit"><i class="fa fa-check" aria-hidden="true"></i> Salvar</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  {% endblock %}
+
+
+  {% block head %}
+  <style type="text/css">
+    .submenu{
+      text-align: center;
+      margin: 10px;
+    }
+    .botoes{
+      text-align: center;
+    }
+    .botoes button {
+      margin: 0 2% 0 2%;
+    }
+  </style>
+  {% endblock %}
+
+
+  {% block javascript %}
+
+  {% endblock %}

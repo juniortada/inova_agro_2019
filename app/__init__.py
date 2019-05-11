@@ -36,6 +36,10 @@ def internal_error(error):
 from app.controller import main
 
 # Blueprints
+from app.agro.controller import agro
+
+# Registra blueprints
+app.register_blueprint(agro, url_prefix='/agro')
 
 # Define o locale BR
 def setlocale():

@@ -8,9 +8,10 @@
       <div class="col-6">
         <div class="card border-success">
           <div class="card-body">
-            <h5 class="card-title"><i class="fas fa-users"></i> Menu 1</h5>
-            <p class="card-text">Página do Menu 1</p>
-            <a href="#" class="btn btn-success"><i class="fas fa-users"></i> Menu 1</a>
+            <h5 class="card-title"><i class="fas fa-users"></i> Produtores</h5>
+            <p class="card-text">Cadastro de Produtores</p>
+            <a href="{{ url_for('agro.produtor') }}" class="btn btn-success"><i class="fas fa-users"></i> Produtores</a>
+            <a href="{{ url_for('agro.produtor_novo') }}" class="btn btn-success direita"><i class="fas fa-users"></i> Cadastrar Novo</a>
           </div>
         </div>
       </div>
@@ -48,4 +49,12 @@
       </div>
     </div>
   </div><!-- /.container -->
+  {% endblock %}
+
+  {% block head %}
+    <style type="text/css">
+      .direita{
+        float: right; 
+      }
+    </style>
   {% endblock %}
