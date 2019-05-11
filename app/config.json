@@ -1,0 +1,6 @@
+{
+  "DEBUG": true,
+  "CRIAR_DB": false,
+  "DB_URI": "postgresql+psycopg2://postgres:1234@localhost/inova_agro_2019",
+  "SECRET_KEY": "very_secret"
+}
