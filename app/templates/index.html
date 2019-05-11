@@ -1,7 +1,6 @@
 {% extends "base.html" %}
   {% block body %}
   <div class="container">
-    <p class="lead">Bem Vindo! Hackathon Inova Agro 2019</p>
     <p class="lead">Equipe Agro JMV</p>
 
     <div class="row">
@@ -33,7 +32,7 @@
           <div class="card-body">
             <h5 class="card-title"><i class="fas fa-search"></i> Consultas</h5>
             <p class="card-text">Consulta de Produções</p>
-            <a href="#" class="btn btn-info"><i class="fas fa-search"></i> Consultas</a>
+            <a href="{{ url_for('agro.consulta') }}" class="btn btn-info"><i class="fas fa-search"></i> Consultas</a>
           </div>
         </div>
       </div>

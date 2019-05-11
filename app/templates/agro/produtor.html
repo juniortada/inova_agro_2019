@@ -20,6 +20,30 @@
         </div>
       </div>
 
+      <div class="row form-group">
+        <div class="col-1"><label for="nome_propriedade" class="col-form-label">Nome Propriedade:</label></div>
+        <div class="col-11">
+          <input type="text" name="nome_propriedade" class="form-control" autocomplete="off"
+            {% if produtor %}
+              value="{{produtor.nome_propriedade}}"
+            {% endif %}
+          >
+          </select>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-1"><label for="tamanho" class="col-form-label">Tamanho:</label></div>
+        <div class="col-11">
+          <input type="text" name="tamanho" class="form-control" autocomplete="off"
+            {% if produtor %}
+              value="{{produtor.tamanho}}"
+            {% endif %}
+          >
+          </select>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-3"></div>
         <div class="col-6 botoes">

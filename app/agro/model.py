@@ -9,6 +9,8 @@ class Produtor(Base):
     __tablename__ = 'produtor'
 
     nome = Column(String)
+    nome_propriedade = Column(String)
+    tamanho = Column(String)
 
 
 class Producao(Base):

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+  {% block body %}
+  <div id="app1" class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col"><h5 class="submenu"><i class="fas fa-search"></i> Consultar Produções</h5></div>
+      <div class="col"></div>   
+    </div>
+
+    <form id="form_produtor" name="form_produtor" role="form" method="post">
+      <div class="row form-group">
+        <div class="col-1"><label for="nome" class="col-form-label">Produtor:</label></div>
+        <div class="col-11">
+          <select v-model="produtor" class="form-control" id="produtor">
+              <option disabled selected="" value="">Escolha um Produtor</option>
+              <option v-for="p in produtores" :value="p.id">
+                {% raw %}{{ p.nome }}{% endraw %}
+              </option>
+          </select>
+        <input type="hidden" name="produtor_id" id="produtor_id">
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-2"><label for="data_inicio" class="col-form-label">Data Início:</label></div>
+        <div class="col-4">
+          <input type="date" name="data_inicio" class="form-control" autocomplete="off">
+        </div>
+
+        <div class="col-2"><label for="data_fim" class="col-form-label">Data Fim:</label></div>
+        <div class="col-4">
+          <input type="date" name="data_fim" class="form-control" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col"><h5 class="submenu">Resultados</h5></div>
+      </div>
+
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 botoes">
+          <button class="btn" onclick="location.href='{{ url_for('agro.produtor') }}'" type="button"><i class="fa fa-undo" aria-hidden="true"></i> Voltar</button>
+          <button class="btn btn-primary" type="button" @click="validar"><i class="fa fa-check" aria-hidden="true"></i> Pesquisar</button>
+        </div>
+      </div>
+
+    </form>
+
+    <br>
+
+    <div class="row">
+      <div class="col-6" id="barchart_1" style="width: 550px; height: 300px;"></div>
+      <div class="col-6" id="barchart_2" style="width: 550px; height: 300px;"></div>
+    </div>
+
+    <br>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_erro" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><span id="titulo_erro"></span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><span id="msg_erro"></span></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn_modal_fechar">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+
+  {% block head %}
+  <style type="text/css">
+    .submenu{
+      text-align: center;
+      margin: 10px;
+    }
+    .botoes{
+      text-align: center;
+    }
+    .botoes button {
+      margin: 0 2% 0 2%;
+    }
+  </style>
+  {% endblock %}
+
+
+  {% block javascript %}
+
+  <!-- Graficos -->
+  <script src="{{ url_for('static', filename='js/loader.js') }}"></script>
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='js/vue.min.js') }}"></script>
+  <!-- JS -->
+  <script src="{{ url_for('static', filename='js/consulta.js') }}"></script>
+
+  {% endblock %}

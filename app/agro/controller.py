@@ -36,8 +36,9 @@ def produtor_novo():
         if request.method == 'POST':
             produtor = Produtor()
             with sessao() as session:
-                nome = request.form['nome'].strip()
-                produtor.nome = nome
+                produtor.nome = request.form['nome'].strip()
+                produtor.nome_propriedade = request.form['nome_propriedade'].strip()
+                produtor.tamanho = request.form['tamanho'].strip()
                 Dao(session).salvar(produtor)
                 return redirect(url_for('agro.produtor'))
         return render_template('agro/produtor.html')
@@ -59,8 +60,9 @@ def produtor_editar(id):
             produtor = Dao(session).buscarID(Produtor, int(id))
             if produtor:
                 if request.method == 'POST':
-                    nome = request.form['nome'].strip()
-                    produtor.nome = nome
+                    produtor.nome = request.form['nome'].strip()
+                    produtor.nome_propriedade = request.form['nome_propriedade'].strip()
+                    produtor.tamanho = request.form['tamanho'].strip()
                     Dao(session).salvar(produtor)
                     return redirect(url_for('agro.produtor'))
                 return render_template('agro/produtor.html', produtor=produtor)
@@ -137,6 +139,23 @@ def producao_editar(id):
         log.exception(msg + str(e))
         flash(msg, 'alert-danger')
         return render_template('index.html')
+
+
+@agro.route('/consulta', methods=['GET'])
+def consulta():
+    """
+        Método para exibição da página com consulta por período.
+        :return: view com a página consultas.html 
+    """
+    try:
+        
+        return render_template('agro/consultas.html')
+    except Exception as e:
+        msg = 'Erro ao exibir consultas!'
+        log.exception(msg + str(e))
+        flash(msg, 'alert-danger')
+        return render_template('index.html')
+
 
 def _salvar_producao(producao, dao):
     # produtor

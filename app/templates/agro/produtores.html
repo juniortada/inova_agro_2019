@@ -8,6 +8,7 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nome</th>
+          <th scope="col">Tamanho</th>
         </tr>
       </thead>
       <tbody>
@@ -16,6 +17,7 @@
             <tr onclick="location.href='{{ url_for('agro.produtor_editar', id=produtor.id) }}'">
               <td>{{ produtor.id }}</td>
               <td>{{ produtor.nome }}</td>
+              <td>{{ produtor.tamanho }}</td>
             </tr>
           {% endfor %}
         {% endif %}
