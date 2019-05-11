@@ -1,9 +1,11 @@
 # Author: Junior Tada
-from sqlalchemy import create_engine, Integer, Column
+from flask import flash
+from sqlalchemy import create_engine, Integer, Column, DateTime
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import as_declarative, declared_attr
 from app import app, log
 from contextlib import contextmanager
+from datetime import datetime
 
 # Banco de dados
 def conecta():
@@ -23,6 +25,8 @@ class Base(object):
     def __tablename__(cls):
         return cls.__name__.lower()
     id = Column(Integer, primary_key=True)
+    # Data Registro
+    dataregistro = Column(DateTime, default=datetime.now)
 
 
 @contextmanager

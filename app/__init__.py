@@ -60,6 +60,32 @@ def formato_dinheiro(value):
         log.exception('Erro no format format_currency do jinja | ' + str(e))
         return ''
 
+# Data
+def formato_data(value, format='%d/%m/%Y'):
+    """Format data para o Jinja"""
+    try:
+        if value:
+            return value.strftime(format)
+        else:
+            return ''
+    except Exception as e:
+        log.exception('Erro no format format_date do jinja | ' + str(e))
+        return ''
+
+
+# Datajs
+def formato_datajs(value, format='%Y-%m-%d'):
+    """Format data para o Jinja"""
+    try:
+        if value:
+            return value.strftime(format)
+        else:
+            return ''
+    except Exception as e:
+        log.exception('Erro no format format_date do jinja | ' + str(e))
+        return ''
+
+
 def get_uri():
     """
     Método que retorna um dicionario com os dados da URI de conexão com o banco de dados.
@@ -88,3 +114,5 @@ else:
 # filtros para template
 setlocale()
 app.jinja_env.filters['dinheiro'] = formato_dinheiro
+app.jinja_env.filters['date'] = formato_data
+app.jinja_env.filters['datejs'] = formato_datajs

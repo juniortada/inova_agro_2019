@@ -1,21 +1,25 @@
 {% extends "base.html" %}
   {% block body %}
   <div class="container">
-    <h5 class="submenu"><i class="fas fa-users"></i> Produtores Cadastrados <a href="{{ url_for('agro.produtor_novo') }}" class="btn btn-primary direita"> Novo</a></h5>
+    <h5 class="submenu"><i class="fas fa-cubes"></i> Produção <a href="{{ url_for('agro.producao_novo') }}" class="btn btn-primary direita"> Novo</a></h5>
 
     <table class="table table-striped">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Nome</th>
+          <th scope="col">Produtor</th>
+          <th scope="col">Quantidade</th>
+          <th scope="col">Data</th>
         </tr>
       </thead>
       <tbody>
-        {% if produtores %}
-          {% for produtor in produtores %}
-            <tr onclick="location.href='{{ url_for('agro.produtor_editar', id=produtor.id) }}'">
-              <td>{{ produtor.id }}</td>
-              <td>{{ produtor.nome }}</td>
+        {% if producoes %}
+          {% for p in producoes %}
+            <tr onclick="location.href='{{ url_for('agro.producao_editar', id=p.id) }}'">
+              <td>{{ p.id }}</td>
+              <td>{{ p.produtor.nome }}</td>
+              <td>{{ p.quantidade }}</td>
+              <td>{{ p.data|date }}</td>
             </tr>
           {% endfor %}
         {% endif %}

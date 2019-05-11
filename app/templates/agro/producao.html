@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+  {% block body %}
+  <div id="app1" class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col"><h5 class="submenu"><i class="fas fa-cart-plus"></i> Nova Produção</h5></div>
+      <div class="col"></div>   
+    </div>
+
+    <form id="form_producao" name="form_producao" role="form" method="post">
+
+      <div class="row form-group">
+        <div class="col-1"><label for="nome" class="col-form-label">Produtor:</label></div>
+        <div class="col-5">
+          <select v-model="produtor" class="form-control" id="produtor">
+            <option disabled selected="" value="">Escolha um Produtor</option>
+            <option v-for="p in produtores" :value="p.id">
+              {% raw %}{{ p.nome }}{% endraw %}
+            </option>
+        </select>
+        <input type="hidden" name="produtor_id" id="produtor_id">
+        </div>
+        <div class="col-1"><label for="data" class="col-form-label">Data:</label></div>
+        <div class="col-5">
+          <input type="date" name="data" class="form-control" autocomplete="off" value="{% if producao %}{{producao.data|datejs}} {% endif %}">
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-1"><label for="quantidade" class="col-form-label">Quantidade:</label></div>
+        <div class="col-5">
+          <input type="text" name="quantidade" class="form-control" autocomplete="off" value="{% if producao %}{{producao.quantidade}} {% endif %}" data-toggle="Quantidade em litros">
+        </div>
+        <div class="col-1"><label for="ccs" class="col-form-label">CCS:</label></div>
+        <div class="col-5">
+          <input type="text" name="ccs" class="form-control" autocomplete="off" value="{% if producao %}{{producao.ccs}} {% endif %}">
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-1"><label for="cmt" class="col-form-label">CMT:</label></div>
+        <div class="col-5">
+          <input type="text" name="cmt" class="form-control" autocomplete="off" value="{% if producao %}{{producao.cmt}} {% endif %}">
+        </div>
+        <div class="col-1"><label for="cbt" class="col-form-label">CBT:</label></div>
+        <div class="col-5">
+          <input type="text" name="cbt" class="form-control" autocomplete="off" value="{% if producao %}{{producao.cbt}} {% endif %}">
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-1"><label for="gordura" class="col-form-label">Gordura:</label></div>
+        <div class="col-5">
+          <input type="text" name="gordura" class="form-control" autocomplete="off" value="{% if producao %}{{producao.gordura}} {% endif %}">
+        </div>
+        <div class="col-1"><label for="proteina" class="col-form-label">Proteína:</label></div>
+        <div class="col-5">
+          <input type="text" name="proteina" class="form-control" autocomplete="off" value="{% if producao %}{{producao.proteina}} {% endif %}">
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-1"><label for="lactose" class="col-form-label">Lactose:</label></div>
+        <div class="col-5">
+          <input type="text" name="lactose" class="form-control" autocomplete="off" value="{% if producao %}{{producao.lactose}} {% endif %}">
+        </div>
+        <div class="col-1"><label for="solidos" class="col-form-label">Sólidos:</label></div>
+        <div class="col-5">
+          <input type="text" name="solidos" class="form-control" autocomplete="off" value="{% if producao %}{{producao.solidos}} {% endif %}">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 botoes">
+          <button class="btn" onclick="location.href='{{ url_for('agro.producao') }}'" type="button"><i class="fa fa-undo" aria-hidden="true"></i> Voltar</button>
+          <button class="btn btn-success" @click="submit" type="button"><i class="fa fa-check" aria-hidden="true"></i> Salvar</button>
+        </div>
+      </div>
+
+    </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_erro" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"><span id="titulo_erro"></span></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><span id="msg_erro"></span></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn_modal_fechar">Fechar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  {% endblock %}
+
+
+  {% block head %}
+  <style type="text/css">
+    .submenu{
+      text-align: center;
+      margin: 10px;
+    }
+    .botoes{
+      text-align: center;
+    }
+    .botoes button {
+      margin: 0 2% 0 2%;
+    }
+  </style>
+  {% endblock %}
+
+
+  {% block javascript %}
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='js/vue.min.js') }}"></script>
+    <!-- JS -->
+    <script src="{{ url_for('static', filename='js/producao.js') }}"></script>
+    <script type="text/javascript">
+      {% if producao %}
+        app.produtor = "{{producao.produtor_id}}"
+      {% endif %}
+    </script>
+  {% endblock %}
